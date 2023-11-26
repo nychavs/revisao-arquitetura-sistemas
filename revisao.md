@@ -7,7 +7,7 @@ toda vez que alguma informação chega na apicação/porta, essa porta traduz a 
 o que a plicação reconhece, e quando ela precisa interagir com o ambiente externo ela faz isso atraves dos adaptadores
 Por isso um apelido para essa arquitetura é portas e adaptadores. <br></br>
 
-Resumindo: inputs via porta, interações via adpatadores. Portas -> dominio, relacionadas -> adaptadores
+Resumindo: inputs via porta, interações via adpatadores. Portas -> dominio, relacionadas -> adaptadores<br>
 Essa arquitetura favorece o reuso de codigo, alta coesão e baixo acoplamento<br>
 Uma arquitetura hexagonal divide as classes de um sistema em dois grupos: dominio e relacionadas. <br>
 > Classes de Dominio: diretamente relacionada com os negócios do sistema<br>
@@ -48,3 +48,29 @@ garante que as classe entidade e caso de uso são livres de qualquer dependencia
 ### fluco de controle
 
 ### vantagens
+
+## Desevolvimento baseado em componentes
+Surgiu pensando no reuso desses componentes, pois os softwres foram ficando cada vez maiores então a ideia veio pra poder usar esse modulo/componentes em diversas partes do software. Nao usamos classes porque eles sao muito ligadas ao dominio que eles pertencem, ja os componentes são mais independentes/individuais/genericos, podendo atuar como provedores de serviço (ex: métodos)
+- Criar componentes reusaveis e independentes
+- Componentes devem possuir interface
+Segundo Chessman e Daniel, o ponto de partida são: criação do modelo de negócio (diagrama de classe - sem operações) e modelo de caso de uso (diagrama de caso de uso e identificação dos fluxos) <br>
+Passo 1:
+- derivação do diagrama de classe, só que com type
+- identificação do tipo core (as classes principais)
+Passo 2:
+- modificação do modelo para identificar as interfaces
+- para cada classe core será criado um componente gerenciador especificando os metodos dela, então i + o nome da classe + Mgt
+Passo 3:
+- adição da notação pirulito
+Passo 4:
+- elaborar o diagrama de componentes
+![image](https://github.com/nychavs/revisao-arquitetura-sistemas/assets/101810029/a13f2a90-d280-48ed-b4d8-8f7a793e6b67)
+Necessita-se uma interface entre  camada de sistema e de apresentação (web)
+Passo 5:
+- criação dos mgr. cada mgt possui um mgr que é um componente responsavel pela persistencia de dados
+Passo 6:
+- criação dos DAO que são adaptadores em cada um dos mgr.
+![image](https://github.com/nychavs/revisao-arquitetura-sistemas/assets/101810029/1607ebf6-a7ea-4280-933b-47a9137459fb)
+
+### codigo
+
