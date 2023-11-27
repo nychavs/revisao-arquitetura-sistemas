@@ -23,8 +23,73 @@ Quando recebem chamdas de metodos internos encaminham para os serviço externo (
 > Exemplo de classe adaptadora: classe livro controller que cria livros, atualiza etc...<br>
 
 ### Vantagens:
+desacoplamento, testabilidade, flexibilidade, manutentabilidade e independencia da tecnologia
+
+### Desvantagens:
+adicionar complexidade inicial ao porjeto e se o projeto for grande pode ficar lento
 
 ### Codigo:
+dominio pizza:<br>
+package dominio;<br>
+public class Pizza{<br>
+  private string nome<br>
+  private string[] sabores<br>
+}<br>
+getters e setters<br></br>
+
+porta:<br>
+package ports;<br>
+import dominio<br>
+public interface Pizzaservice{<br>
+  public void createPizza(Pizza pizza)<br>
+  public Pizza getPizza(string nome)<br>
+  public list<Pizza>listPizza();<br>
+}<br></br>
+
+porta repositorio<br>
+package ports<br>
+import dominio<br>
+public interface PizzaRepo{<br>
+  public void createPizza(Pizza pizza)<br>
+  public Pizza getPizza(string nome)<br>
+  public list<Pizza>listPizza();<br>
+}<br></br>
+
+adaptador<br>
+package adpaters<br>
+import dominio<br>
+import ports <br>
+public class PizzaController implements PizzaService{<br>
+  private PizzaRepo pizzaRepo;<br>
+  public PizzaController(PizzaRepo pizzaRepo){<br>
+    this.pizzaRepo = pizzaRepo;
+  }<br>
+  @override<br>
+  os metodos q colocamos na interface<br>
+}<br></br>
+
+implementação da repo pro bd<br>
+package adapters<br>
+import dominio;<br>
+import ports;<br>
+public class PizzaRepoImpl implements PizzaRepo {<br>
+ private Map<String, Pizza> pizzaStore = new HashMap<String, Pizza>()<br>
+dps os override, exemplo: <br>
+@Override<br>
+ public void createPizza(Pizza pizza) {<br>
+ pizzaStore.put(pizza.getName(), pizza);<br>
+ }<br></br>
+
+ execução:<br>
+ package ports<br>
+ import adapters<br>
+ public class PizzaServiceFactory {<br>
+ public static PizzaService createPizzaService() {<br>
+ PizzaRepo pr = new PizzaRepoImpl();<br>
+ PizzaService ps = new PizzaController(pr);<br>
+ return ps;<br>
+ }<br>
+}<br>
 
 
 ## Arquitetura Clean
@@ -45,9 +110,13 @@ frameworks externos: são bibliotecas, frameworks e qualquer sistema externo res
 ### regra de dependencia
 garante que as classe entidade e caso de uso são livres de qualquer dependencia com os frameworks externos, então pode ter nenhuma instancia ou conhecimento de classes externas, seja variavel, método ou classe.
 
-### fluco de controle
+### fluxo de controle
 
 ### vantagens
+desacoplamento e independencia de framework, testabilidade, escalabilidade e manutentabilidade, reuso de codigo e adaptabilidade a mudanças de tecnologia
+
+### desvantagem
+desafiador para equipes iniciantes, necessidade de seguir o padrão bem especificamente 
 
 ## Desevolvimento baseado em componentes
 Surgiu pensando no reuso desses componentes, pois os softwres foram ficando cada vez maiores então a ideia veio pra poder usar esse modulo/componentes em diversas partes do software. Nao usamos classes porque eles sao muito ligadas ao dominio que eles pertencem, ja os componentes são mais independentes/individuais/genericos, podendo atuar como provedores de serviço (ex: métodos)
@@ -76,6 +145,12 @@ passo 7:
 
 ### codigo
 
+### vantagens
+reutilização de componentes, manutentabilidade, separação de responsabilidade e escabilidade
+
+### desvantagens
+complexidade de gerenciamento, padronização para garantir a interoperabilidade e sobrecarga de comunicação
+
 ## Desenvolvimento Orientado a Dominio (ddd domain driven development)
 abordagem para sistemas de softwares complexos onde o foco está no dominio do sistema, desenvolvedores e especialistas no negocio devem trabalhar de forma colaborativa usando linguagem ubiqua (vocabulario compartilhado entre os devs e especialistas).<br>
 
@@ -99,7 +174,12 @@ agregados: tb frabricas são coleções de entidades e objetos de valor, as veze
 
 repositorio: usado para recuperar outros objetos de dominio de um bando de dados, é onde cadastramos as informações, controlamos objetos ja cadastrados e buscamos informações neles.uma bastração para o banco de dados. surge da necessidade do cliente de guardar e obter objetos do dominio. APENAS entidades e agregados podem possuir repositorios
 
-### codigo
+### vantagens
+alinhado com o negocio, melhor comunicação entre devs e especialistas
+
+### desvantagens
+nao recomendado pra projetos simples, aumentar a complexidade inicial do projeto 
+
 ## soa
 as arquiteturas orientadas a serviço (soa) são uma forma de desenvolvimento de sistemas distribuidos em que os componentes de sistemas sao serviços autonomos, executando em computadores geograficamente distribuidos.
 > é uma abordagem arquitetural corporativa que permite a criação de serviços de negocio interoperaveis que podem ser reutilizados e compartilhados. <br>
@@ -110,7 +190,11 @@ principios dos serviços:
 > reutilizaveis, compartilham contrato formal, possuem baixo acoplamento, abstraem a logica, capazes de compor, autonomos, evitam alocação de recursos por longos periodos de tempo e são capazes de serem descobertos.
 ![image](https://github.com/nychavs/revisao-arquitetura-sistemas/assets/101810029/1cb0506e-0b0b-460f-b0fa-68543e38dfd0)
 
-### codigo
+### vantagens 
+reusabilidade, manutentabilidade, interoperabilidade, escalabilidade
+
+### desvantagens
+complexidade inicial, overhead de comunicação, dependencia de padroes especificos
 
 ## Webservices
 representação padrão para algum recurso computacional ou de informações que podem ser usadas em outros programas, sendo acessados via HTTP e sendo xml puro podemos acessar via get 
@@ -120,4 +204,9 @@ SOAP
 > padrão de troca de mensagens que oferece suporte à comunicação entre os serviços. Ele define os componentes essenciais e opcionais das mensagens passadas entre serviços
 
 ### diferença entre restful e webservices
-### codigo
+webservice é qualquer serviço disponibilizado atraves da internet e usa tanto http quanto xml e soap, ja restful é uma arquitetura que define um conjunto de principios e retrições para o design de sistema distribuidos, usa http e json.
+### vantagens
+interoperabilidadem reusabilidade, integração facilitada e manutentabilidade
+
+### desvantagens
+overhead de comunicação, complexidade de implementação, dependencia da rede
