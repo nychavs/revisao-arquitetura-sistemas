@@ -89,11 +89,33 @@ ddd e arquitetura<br>
 objetos importantes de dominio:
 > entidades, objetos de valor, serviços, agregados e repositórios.<br>
 entidade: valores unicos exemplo: ID<br>
-objetos de valor: valores nao unicos exemplo: CEP<br>
+objetos de valor: valores nao unicos exemplo: CEP e nao devem possuir set<br>
 entidades sao mais importantes que objetos de valor.<br>
 serviços: tb gerenciados/controladores são operações importantes (exemplo: servicoDeEmprestimo)<br>
 agregados: tb frabricas são coleções de entidades e objetos de valor, as vezes eles nao podem ser individuais, ele possui uma raiz que é a entidade e a raiz referencia os objetos do agregado. ex: emprestimo e itemEmprestimo (que possui usuario e livro)<br>
-> ![image](https://github.com/nychavs/revisao-arquiteturasistemas/assets/101810029/9898cf0a-df67-4922-9038-e472f20b35ee)
-repositorio: usado para recuperar outros objetos de dominio de um bando de dados, é onde cadastramos as informações, controlamos objetos ja cadastrados e buscamos informações neles.uma bastração para o banco de dados. surge da necessidade do cliente de guardar e obter objetos do dominio.
+![image](https://github.com/nychavs/revisao-arquitetura-sistemas/assets/101810029/f18d685c-beae-4c0c-b842-9f4ec8ed7301)
 
+repositorio: usado para recuperar outros objetos de dominio de um bando de dados, é onde cadastramos as informações, controlamos objetos ja cadastrados e buscamos informações neles.uma bastração para o banco de dados. surge da necessidade do cliente de guardar e obter objetos do dominio. APENAS entidades e agregados podem possuir repositorios
+
+### codigo
+## soa
+as arquiteturas orientadas a serviço (soa) são uma forma de desenvolvimento de sistemas distribuidos em que os componentes de sistemas sao serviços autonomos, executando em computadores geograficamente distribuidos.
+> é uma abordagem arquitetural corporativa que permite a criação de serviços de negocio interoperaveis que podem ser reutilizados e compartilhados. <br>
+> visbilidade, interação e efeitos. <br>
+> exemplo: api da amzon product advertising api. <br>
+
+principios dos serviços:
+> reutilizaveis, compartilham contrato formal, possuem baixo acoplamento, abstraem a logica, capazes de compor, autonomos, evitam alocação de recursos por longos periodos de tempo e são capazes de serem descobertos.
+![image](https://github.com/nychavs/revisao-arquitetura-sistemas/assets/101810029/1cb0506e-0b0b-460f-b0fa-68543e38dfd0)
+
+### codigo
+
+## Webservices
+representação padrão para algum recurso computacional ou de informações que podem ser usadas em outros programas, sendo acessados via HTTP e sendo xml puro podemos acessar via get 
+![image](https://github.com/nychavs/revisao-arquitetura-sistemas/assets/101810029/5ef49eca-59ed-41b3-9bc9-d16ae48f0b62)
+Podemos usar o soap como padrão <br></br>
+SOAP
+> padrão de troca de mensagens que oferece suporte à comunicação entre os serviços. Ele define os componentes essenciais e opcionais das mensagens passadas entre serviços
+
+### diferença entre restful e webservices
 ### codigo
