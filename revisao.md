@@ -70,6 +70,8 @@ Passo 5:
 - criação dos mgr. cada mgt possui um mgr que é um componente responsavel pela persistencia de dados
 Passo 6:
 - criação dos DAO que são adaptadores em cada um dos mgr.
+passo 7:
+- criação dos value objects
 ![image](https://github.com/nychavs/revisao-arquitetura-sistemas/assets/101810029/1607ebf6-a7ea-4280-933b-47a9137459fb)
 
 ### codigo
