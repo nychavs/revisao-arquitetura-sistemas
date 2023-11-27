@@ -74,3 +74,26 @@ Passo 6:
 
 ### codigo
 
+## Desenvolvimento Orientado a Dominio (ddd domain driven development)
+abordagem para sistemas de softwares complexos onde o foco está no dominio do sistema, desenvolvedores e especialistas no negocio devem trabalhar de forma colaborativa usando linguagem ubiqua (vocabulario compartilhado entre os devs e especialistas).<br>
+
+> o dominio de um sistema consiste na area do sistema que ele pretende resolver. deve ser norteado para atender o seu dominio e nao se moldar a uma determinada tecnologia.<br>
+
+linguagem ubiqua
+> são usados para melhor comunicação e para nomear entidades do codigo do sistema, como classes, metodos, atributos etc<br>
+
+ddd e arquitetura<br>
+> podem ser usados arquitetura em camdas, clean ou hexagonal. evans indica a separação em 4 camadas:
+> interface, aplicação, dominio e infraestrutura, onde a aplicação faz ponte com infra/modelo de dominio e a interface.<br>
+
+objetos importantes de dominio:
+> entidades, objetos de valor, serviços, agregados e repositórios.<br>
+entidade: valores unicos exemplo: ID<br>
+objetos de valor: valores nao unicos exemplo: CEP<br>
+entidades sao mais importantes que objetos de valor.<br>
+serviços: tb gerenciados/controladores são operações importantes (exemplo: servicoDeEmprestimo)<br>
+agregados: tb frabricas são coleções de entidades e objetos de valor, as vezes eles nao podem ser individuais, ele possui uma raiz que é a entidade e a raiz referencia os objetos do agregado. ex: emprestimo e itemEmprestimo (que possui usuario e livro)<br>
+> ![image](https://github.com/nychavs/revisao-arquiteturasistemas/assets/101810029/9898cf0a-df67-4922-9038-e472f20b35ee)
+repositorio: usado para recuperar outros objetos de dominio de um bando de dados, é onde cadastramos as informações, controlamos objetos ja cadastrados e buscamos informações neles.uma bastração para o banco de dados. surge da necessidade do cliente de guardar e obter objetos do dominio.
+
+### codigo
